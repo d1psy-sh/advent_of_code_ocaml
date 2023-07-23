@@ -1,0 +1,8 @@
+lib: [
+  "_build/install/default/lib/advent_of_code/META"
+  "_build/install/default/lib/advent_of_code/dune-package"
+  "_build/install/default/lib/advent_of_code/opam"
+]
+bin: [
+  "_build/install/default/bin/advent_of_code"
+]
