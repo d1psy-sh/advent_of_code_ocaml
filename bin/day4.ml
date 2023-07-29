@@ -16,11 +16,29 @@ let contains h =
   then true
   else false
 
-let get_res input =
+let overlap h =
+  let parts = Str.split (Str.regexp ",") h in
+  let first = Str.split (Str.regexp "-") (List.hd parts) in
+  let second = Str.split (Str.regexp "-") (List.nth parts 1) in
+  if
+    int_of_string (List.nth first 0) <= int_of_string (List.nth second 1)
+    && int_of_string (List.nth first 0) >= int_of_string (List.nth second 0)
+    ||int_of_string (List.nth first 0) >= int_of_string (List.nth second 1)
+    && int_of_string (List.nth first 0) <= int_of_string (List.nth second 0)
+    || int_of_string (List.nth first 1) >= int_of_string (List.nth second 1)
+    && int_of_string (List.nth first 1) <= int_of_string (List.nth second 0)
+    || int_of_string (List.nth first 1) <= int_of_string (List.nth second 1)
+    && int_of_string (List.nth first 1) >= int_of_string (List.nth second 0)
+    || contains h
+  then true
+  else false
+
+
+let get_res input f =
   let rec aux acc = function
     | [] -> acc
-    | h :: t -> if contains h then aux (acc + 1) t else aux acc t
+    | h :: t -> if f h then aux (acc + 1) t else aux acc t
   in
   aux 0 input
 
-let () = print_endline (string_of_int (get_res input))
+let () = print_endline (string_of_int (get_res input contains)); print_endline (string_of_int (get_res input overlap))
