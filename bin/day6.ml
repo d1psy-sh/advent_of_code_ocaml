@@ -1,6 +1,6 @@
 let testString = "mjqjpqmgbljsphdztnvjfqwrcgsmlb"
 let sol = 7
-let file = "input5.txt"
+let file = "input6.txt"
 let _input = In_channel.with_open_text file In_channel.input_all
 
 module CharSet = Set.Make (Char)
